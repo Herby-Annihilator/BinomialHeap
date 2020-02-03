@@ -1,0 +1,6 @@
+D:\Проекты  в студии\BinomialTreap\bin\Debug\BinomialTreap.exe.config
+D:\Проекты  в студии\BinomialTreap\bin\Debug\BinomialTreap.exe
+D:\Проекты  в студии\BinomialTreap\bin\Debug\BinomialTreap.pdb
+D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.csprojAssemblyReference.cache
+D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.exe
+D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.pdb
