@@ -11,13 +11,19 @@ namespace BinomialTreap.BinomialTree
     /// </summary>
     public class BinomialTree<T> where T : IComparable<T>
     {
-
-
+        public delegate void SomeDelegate(Node<T> node);
+        /// <summary>
+        /// Корень дерева
+        /// </summary>
         private Node<T> root;
         /// <summary>
         /// Порядок дерева (или его высота), если дерво пустое, то порядок == -1
         /// </summary>
         public int Order { get; set; }
+        /// <summary>
+        /// Что можно делать с узлами дерева
+        /// </summary>
+        private Operations Operations { get; set; }
 
         public BinomialTree()
         {
@@ -113,6 +119,70 @@ namespace BinomialTreap.BinomialTree
                 }
             } while (lastRightBrother != null);
             //return new BinomialTree<T>(first.root);
+        }
+        /// <summary>
+        /// Создает делегат в соответствии с заданной операцией
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public SomeDelegate CreateDelegate(Operations operation)
+        {
+            Operations = operation;
+            switch(Operations)
+            {
+                case Operations.PrintNode:
+                    return new SomeDelegate(PrintNode);
+
+                default: return null;
+            }
+        }
+
+        private void PrintNode(Node<T> node)
+        {
+            node.PrintNode();
+        }
+
+        /// <summary>
+        /// Осуществляет обход дерева и делает с узлами то, что передано в качестве делегата
+        /// с сигнатурой void Node
+        /// </summary>
+        /// <param name="whatToDoWithNode">делегат с сигнатурой void Node</param>
+        public void TreeTraversal(SomeDelegate whatToDoWithNode)
+        {
+            Node<T> currentNode = this.root;
+            Node<T> nextLevel = root.LeftChild;
+            // пока есть что печатать
+            while (currentNode != null)
+            {
+                // печатаем
+                whatToDoWithNode(currentNode);
+                // если существует правый брат, то переходим на него и повторяем цикл
+                if (currentNode.RightBrother != null)
+                {
+                    currentNode = currentNode.RightBrother;
+                    continue;
+                }
+                // если правого брата нет, то переходим на следующий уровень
+                currentNode = nextLevel;
+                // находим следующий уровень для nexLevel
+                if (nextLevel != null)
+                {
+                    if (nextLevel.RightBrother == null)
+                    {
+                        nextLevel = null;
+                        continue;
+                    }
+                    while (nextLevel.RightBrother != null)
+                    {
+                        nextLevel = nextLevel.RightBrother;
+                        if (nextLevel.LeftChild != null)
+                        {
+                            nextLevel = nextLevel.LeftChild;
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="BinomialHeap.cs" />
     <Compile Include="BinomialTree\BinomialTree.cs" />
     <Compile Include="BinomialTree\Node.cs" />
+    <Compile Include="BinomialTree\Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

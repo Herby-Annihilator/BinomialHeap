@@ -24,7 +24,10 @@ namespace BinomialTreap
         {
             binomialTreesList = new BinomialTree<T>[MAX_SIZE];
         }
-
+        /// <summary>
+        /// Добавляет элемент в кучу
+        /// </summary>
+        /// <param name="data"></param>
         public void Add(T data = default(T))
         {
             // сделаем дерево из одного элемента (порядок = 0)
@@ -62,7 +65,10 @@ namespace BinomialTreap
                 }
             }
         }
-
+        /// <summary>
+        /// Проверяет кучу на пустоту
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             for (int i = 0; i < MAX_SIZE; i++)
@@ -71,6 +77,22 @@ namespace BinomialTreap
                     return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Складывает две кучи
+        /// </summary>
+        /// <param name="binomialHeap"></param>
+        private void Merge(BinomialHeap<T> binomialHeap)
+        {
+
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < MAX_SIZE; i++)
+                if (binomialTreesList[i] != null)
+                    binomialTreesList[i].TreeTraversal(binomialTreesList[i].CreateDelegate(Operations.PrintNode));
         }
     }
 }

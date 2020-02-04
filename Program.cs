@@ -19,6 +19,7 @@ namespace BinomialTreap
             binomialHeap.Add(13);
             binomialHeap.Add(40);
             binomialHeap.Add(25);
+            binomialHeap.Print();
         }
     }
 }

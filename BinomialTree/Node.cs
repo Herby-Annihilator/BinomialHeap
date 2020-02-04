@@ -54,5 +54,15 @@ namespace BinomialTreap.BinomialTree
             LeftChild = leftChild;
             RightBrother = rightChild;
         }
+
+        public void PrintNode()
+        {
+            if (RightBrother != null)
+                Console.Write(Data + "-->");
+            else
+            {
+                Console.WriteLine(Data + "\n");
+            }
+        }
     }
 }
