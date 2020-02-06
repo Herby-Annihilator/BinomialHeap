@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinomialTreap.BinomialTree
 {
@@ -12,6 +8,7 @@ namespace BinomialTreap.BinomialTree
     /// <typeparam name="T"></typeparam>
     public class Node<T> where T : IComparable<T>
     {
+        
 
         /// <summary>
         /// Ключ
@@ -61,8 +58,32 @@ namespace BinomialTreap.BinomialTree
                 Console.Write(Data + "-->");
             else
             {
-                Console.WriteLine(Data + "\n");
+                Console.Write(Data);               
+                Console.WriteLine("\n");               
             }
+        }
+
+        /// <summary>
+        /// Показывает, является ли Data натуральным числом
+        /// </summary>
+        /// <returns></returns>
+        public bool IsNatural()
+        {
+            int data = (int)(object)Data;
+            try
+            {
+                string dataString = Convert.ToString(data);
+                for (int i = 0; i < dataString.Length; i++)
+                {
+                    if (dataString[i] < '0' || dataString[i] > '9')
+                        return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно преобразовать data в string");
+            }
+            return true;
         }
     }
 }

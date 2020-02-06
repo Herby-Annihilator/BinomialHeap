@@ -7,12 +7,16 @@ using BinomialTreap.BinomialTree;
 
 namespace BinomialTreap
 {
+    /// <summary>
+    /// Биномиальная куча
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BinomialHeap<T> where T : IComparable<T>
     {
         /// <summary>
         /// Количество биномиальных деревьев в куче,
-        /// максимальная высота биномиильного дерева == 31,
-        /// максимальное кол-во элементов в дереве == 2^31
+        /// максимальная высота биномиильного дерева = 31,
+        /// максимальное кол-во элементов в дереве = 2^30
         /// </summary>
         private const int MAX_SIZE = 31;
         /// <summary>
@@ -88,11 +92,47 @@ namespace BinomialTreap
 
         }
 
+        /// <summary>
+        /// Печатает кучу
+        /// </summary>
         public void Print()
         {
             for (int i = 0; i < MAX_SIZE; i++)
                 if (binomialTreesList[i] != null)
-                    binomialTreesList[i].TreeTraversal(binomialTreesList[i].CreateDelegate(Operations.PrintNode));
+                    binomialTreesList[i].PrintTree();
+                else
+                {
+                    Console.WriteLine("\nnull\n");
+                }
+        }
+
+        /// <summary>
+        /// Напечатает первые К натуральных чисел в порядке возрастания
+        /// </summary>
+        /// <param name="k"></param>
+        public void PrintFirstNaturalElements(int k)
+        {
+            int howMuchPrint;
+            List<T> elements = new List<T>();
+            for (int i = 0; i < MAX_SIZE; i++)
+                if (binomialTreesList[i] != null)
+                {
+                    elements.AddRange(binomialTreesList[i].GetListOfElements());
+                }
+            var comparer = Comparer<T>.Default;
+            elements.Sort(comparer);
+            if (k > elements.Count)
+            {
+                howMuchPrint = elements.Count;
+            }
+            else
+            {
+                howMuchPrint = k;
+            }
+            for (int i = 0; i < howMuchPrint; i++)
+            {
+                Console.Write(elements[i] + " ");
+            }
         }
     }
 }

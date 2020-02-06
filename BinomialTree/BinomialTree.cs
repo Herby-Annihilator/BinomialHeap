@@ -184,5 +184,92 @@ namespace BinomialTreap.BinomialTree
                 }
             }
         }
+
+        public void PrintTree()
+        {
+            int cursorLeft = 0, cursorTop;
+            Node<T> currentNode = this.root;
+            Node<T> nextLevel = root.LeftChild;
+            // пока есть что печатать
+            while (currentNode != null)
+            {
+                // печатаем
+                if(currentNode.LeftChild != null && currentNode.LeftChild.Equals(nextLevel))
+                    cursorLeft = Console.CursorLeft;
+                PrintNode(currentNode);
+                
+                // если существует правый брат, то переходим на него и повторяем цикл
+                if (currentNode.RightBrother != null)
+                {
+                    currentNode = currentNode.RightBrother;
+                    continue;
+                }
+                // если правого брата нет, то переходим на следующий уровень
+                cursorTop = Console.CursorTop;
+                currentNode = nextLevel;
+                Console.SetCursorPosition(cursorLeft, cursorTop);
+                // находим следующий уровень для nexLevel
+                if (nextLevel != null)
+                {
+                    if (nextLevel.RightBrother == null)
+                    {
+                        nextLevel = null;
+                        continue;
+                    }
+                    while (nextLevel.RightBrother != null)
+                    {
+                        nextLevel = nextLevel.RightBrother;
+                        if (nextLevel.LeftChild != null)
+                        {
+                            nextLevel = nextLevel.LeftChild;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public List<T> GetListOfElements()
+        {
+            List<T> listOfElemnts = new List<T>();
+            Node<T> currentNode = this.root;
+            Node<T> nextLevel = root.LeftChild;
+            // пока есть что печатать
+            while (currentNode != null)
+            {
+                // печатаем
+                if (currentNode.IsNatural())
+                {
+                    listOfElemnts.Add(currentNode.Data);
+                }
+                // если существует правый брат, то переходим на него и повторяем цикл
+                if (currentNode.RightBrother != null)
+                {
+                    currentNode = currentNode.RightBrother;
+                    continue;
+                }
+                // если правого брата нет, то переходим на следующий уровень
+                currentNode = nextLevel;
+                // находим следующий уровень для nexLevel
+                if (nextLevel != null)
+                {
+                    if (nextLevel.RightBrother == null)
+                    {
+                        nextLevel = null;
+                        continue;
+                    }
+                    while (nextLevel.RightBrother != null)
+                    {
+                        nextLevel = nextLevel.RightBrother;
+                        if (nextLevel.LeftChild != null)
+                        {
+                            nextLevel = nextLevel.LeftChild;
+                            break;
+                        }
+                    }
+                }
+            }
+            return listOfElemnts;
+        }
     }
 }
