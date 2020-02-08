@@ -9,6 +9,7 @@ namespace BinomialTreap.BinomialTree
     /// <summary>
     /// Биномиальное дерево
     /// </summary>
+    [Serializable]
     public class BinomialTree<T> where T : IComparable<T>
     {
         public delegate void SomeDelegate(Node<T> node);

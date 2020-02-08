@@ -11,6 +11,7 @@ namespace BinomialTreap
     /// Биномиальная куча
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
     public class BinomialHeap<T> where T : IComparable<T>
     {
         /// <summary>
@@ -99,7 +100,10 @@ namespace BinomialTreap
         {
             for (int i = 0; i < MAX_SIZE; i++)
                 if (binomialTreesList[i] != null)
+                {
+                    Console.WriteLine("***************************");
                     binomialTreesList[i].PrintTree();
+                }
                 else
                 {
                     Console.WriteLine("\nnull\n");

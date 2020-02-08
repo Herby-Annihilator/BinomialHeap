@@ -6,6 +6,7 @@ namespace BinomialTreap.BinomialTree
     /// Узел биномиального дерева
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
     public class Node<T> where T : IComparable<T>
     {
         
