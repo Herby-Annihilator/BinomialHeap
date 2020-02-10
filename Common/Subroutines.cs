@@ -16,10 +16,11 @@ namespace BinomialTreap
             {
                 Console.Clear();
                 Console.WriteLine("* c - создать кучу и заполнить ее случайными величинами");
+                Console.WriteLine("* r - добавить элементы в кучу");
                 Console.WriteLine("* b - восстановить кучу из файла input.dat");
                 Console.WriteLine("* d - вывести первые К натуральных чисел");
                 Console.WriteLine("* p - показать кучу");
-                //Console.WriteLine("* r - показать таблицу связей дерева");
+               
                 //Console.WriteLine("* h - Получить высоту дерева");
                 //Console.WriteLine("* v - получить информацию о корне");
                 Console.WriteLine("* ESC - выход");
@@ -244,6 +245,5 @@ namespace BinomialTreap
             return true;
         }
 
-        
     }
 }

@@ -4,3 +4,9 @@ D:\Проекты  в студии\BinomialTreap\bin\Debug\BinomialTreap.pdb
 D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.csprojAssemblyReference.cache
 D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.exe
 D:\Проекты  в студии\BinomialTreap\obj\Debug\BinomialTreap.pdb
+C:\VS_Projects\BinomialHeap\bin\Debug\BinomialTreap.exe.config
+C:\VS_Projects\BinomialHeap\bin\Debug\BinomialTreap.exe
+C:\VS_Projects\BinomialHeap\bin\Debug\BinomialTreap.pdb
+C:\VS_Projects\BinomialHeap\obj\Debug\BinomialTreap.csprojAssemblyReference.cache
+C:\VS_Projects\BinomialHeap\obj\Debug\BinomialTreap.exe
+C:\VS_Projects\BinomialHeap\obj\Debug\BinomialTreap.pdb

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using BinomialTreap.Common;
 
 namespace BinomialTreap
@@ -49,9 +50,62 @@ namespace BinomialTreap
                             SaverLoader.SaveToFile("input.dat", binomialHeap);
                             Console.WriteLine("Куча успешно сформирована. Нажмите что-нибудь...");
                             Console.ReadKey();
+                            try
+                            {
+                                binomialHeap.WriteBinomialHeapToFile("output.dat");
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("GG in file output.dat");
+                                Console.ReadKey();
+                            }
                             break;
                         }
+                    //
+                    //  r - добавить элементы в кучу
+                    //
+                    case 'r':
+                        {
+                            int number;
+                            do
+                            {
+                                do
+                                {
+                                    Console.Write("Сколько элементов добавить? (не более 10)\nВаше число ");
+                                } while (!Int32.TryParse(Console.ReadLine(), out number));
+                            } while (number < 1 || number > 10);
 
+                            if (binomialHeap == null)
+                            {
+                                binomialHeap = new BinomialHeap<int>();
+                            }
+                            for (int i = 0; i < number; i++)
+                            {
+                                int digit;
+                                do
+                                {
+                                    Console.Write("\nЧисло №" + (i + 1) + " = ");
+                                } while (!Int32.TryParse(Console.ReadLine(), out digit));
+                                binomialHeap.Add(digit);
+                            }
+                            Console.WriteLine("Элементы успешно добавлены. Нажмите что-нибудь...");
+                            Console.ReadKey();
+                            if (File.Exists("input.dat"))
+                            {
+                                File.Delete("input.dat");
+                            }
+                            SaverLoader.SaveToFile("input.dat", binomialHeap);
+                            try
+                            {
+                                binomialHeap.WriteBinomialHeapToFile("output.dat");
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("GG in file output.dat");
+                                Console.ReadKey();
+                            }
+                            break;
+                        }
                     //
                     // b - восстановить кучу из файла input.dat
                     //
@@ -97,9 +151,6 @@ namespace BinomialTreap
                                     Console.Write("Сколько элементов вывести?\nВаше число ");
                                 } while (!Int32.TryParse(Console.ReadLine(), out k));
                             } while (k < 1);
-                            //
-                            // Можно добавить проверку на количество
-                            //
                             binomialHeap.PrintFirstNaturalElements(k);
                             Console.ReadKey();
                             break;

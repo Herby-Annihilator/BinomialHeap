@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -228,6 +229,55 @@ namespace BinomialTreap.BinomialTree
                     }
                 }
             }
+        }
+
+        public void PrintTreeToFile(StreamWriter writer)
+        {
+            int cursorLeft = 0, cursorTop;
+            //
+            TextWriter oldStream = Console.Out;
+            //
+            Console.SetOut(writer);
+            Node<T> currentNode = this.root;
+            Node<T> nextLevel = root.LeftChild;
+            // пока есть что печатать
+            while (currentNode != null)
+            {
+                // печатаем
+                if (currentNode.LeftChild != null && currentNode.LeftChild.Equals(nextLevel))
+                    cursorLeft = Console.CursorLeft;
+                PrintNode(currentNode);
+
+                // если существует правый брат, то переходим на него и повторяем цикл
+                if (currentNode.RightBrother != null)
+                {
+                    currentNode = currentNode.RightBrother;
+                    continue;
+                }
+                // если правого брата нет, то переходим на следующий уровень
+                cursorTop = Console.CursorTop;
+                currentNode = nextLevel;
+                Console.SetCursorPosition(cursorLeft, cursorTop);
+                // находим следующий уровень для nexLevel
+                if (nextLevel != null)
+                {
+                    if (nextLevel.RightBrother == null)
+                    {
+                        nextLevel = null;
+                        continue;
+                    }
+                    while (nextLevel.RightBrother != null)
+                    {
+                        nextLevel = nextLevel.RightBrother;
+                        if (nextLevel.LeftChild != null)
+                        {
+                            nextLevel = nextLevel.LeftChild;
+                            break;
+                        }
+                    }
+                }
+            }
+            Console.SetOut(oldStream);
         }
 
         public List<T> GetListOfElements()

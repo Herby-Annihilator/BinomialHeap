@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using BinomialTreap.BinomialTree;
 
 namespace BinomialTreap
@@ -127,6 +128,18 @@ namespace BinomialTreap
             elements.Sort(comparer);
             if (k > elements.Count)
             {
+                // IT'S VERY BAD TO DO AS ME!!!!
+                Console.Write("В куче нет столько натуральных чисел. Все равно вывести? y/n");
+                char symbol;
+                do
+                {
+                    symbol = Console.ReadKey(true).KeyChar;
+                } while (symbol != 'y' && symbol != 'n');
+                if (symbol == 'n')
+                {
+                    return;
+                }
+                // IT'S VERY BAD TO DO AS ME!!!!
                 howMuchPrint = elements.Count;
             }
             else
@@ -137,6 +150,25 @@ namespace BinomialTreap
             {
                 Console.Write(elements[i] + " ");
             }
+        }
+
+        public void WriteBinomialHeapToFile(string fileName)
+        {
+            StreamWriter writer = new StreamWriter(fileName, true);
+            
+
+
+            for (int i = 0; i < MAX_SIZE; i++)
+                if (binomialTreesList[i] != null)
+                {
+                    writer.WriteLine("***************************");
+                    binomialTreesList[i].PrintTreeToFile(writer);
+                }
+                else
+                {
+                    writer.WriteLine("\nnull\n");
+                }
+            writer.Close();
         }
     }
 }
